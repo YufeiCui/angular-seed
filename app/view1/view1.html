@@ -1,7 +1,10 @@
 <div class="phonebook">
     <h1>Yufei's Phonebook</h1>
+
+    <div uib-alert ng-repeat="alert in alerts track by $index" close="closeAlert($index)" dismiss-on-timeout="3000">{{alert}}</div>
+
     <div class="row">
-        <form class="col-xs-4" ng-submit="addPerson(name, number)">
+        <form class="col-xs-4" ng-submit="addPerson(name, number); alert(name)">
             <div class="form-group">
                 <label for="inputName">Name</label>
                 <input type="text" class="form-control " id="inputName" placeholder="Enter name"

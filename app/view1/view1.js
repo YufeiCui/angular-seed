@@ -15,11 +15,18 @@ angular.module('myApp.view1', ['ngRoute'])
   $scope.currentPage = 0;
   $scope.pageSize = 5;
   $scope.persons = [];
+  $scope.alerts = [];
   $scope.addPerson = function(name, number) {
       $scope.persons.push({name: name, number: number});
   };
   $scope.numberOfPages = function() {
       return Math.ceil($scope.persons.length/$scope.pageSize);
+  };
+  $scope.alert = function(name) {
+      $scope.alerts.push(name + " has been added to the phone book!");
+  };
+  $scope.closeAlert = function(index) {
+      $scope.alerts.splice(index, 1);
   }
 }])
 
