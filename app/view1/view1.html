@@ -16,11 +16,20 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
-    <div ng-repeat="person in persons">
+    <div ng-repeat="person in persons | startFrom:currentPage*pageSize | limitTo:pageSize">
         <ul class="list-group">
             <li class="list-group-item">Name: {{person.name}} <br>
                                         PhoneNumber: {{person.number}}</li>
         </ul>
+    </div>
+    <div ng-hide="persons.length == 0">
+        <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+            Previous
+        </button>
+        {{currentPage+1}}/{{numberOfPages()}}
+        <button  ng-disabled="currentPage >= persons.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+            Next
+        </button>
     </div>
 </div>
 

@@ -11,9 +11,21 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', ['$scope', function($scope) {
+.controller('View1Ctrl', ['$scope', '$filter', function($scope, $filter) {
+  $scope.currentPage = 0;
+  $scope.pageSize = 5;
   $scope.persons = [];
   $scope.addPerson = function(name, number) {
       $scope.persons.push({name: name, number: number});
   };
-}]);
+  $scope.numberOfPages = function() {
+      return Math.ceil($scope.persons.length/$scope.pageSize);
+  }
+}])
+
+.filter('startFrom', function() {
+    return function(input, start) {
+        start = +start; //parse to int
+        return input.slice(start);
+    }
+});
